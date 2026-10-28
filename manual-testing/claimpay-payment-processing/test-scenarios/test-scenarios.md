@@ -1,561 +1,736 @@
-ClaimPay QA Test Plan
+ClaimPay Test Scenarios
+
 Special Payment Processing Enhancement
-Project Type: Manual Functional and Integration Testing
+
 Application: ClaimPay
+Test Type: Manual Functional / Integration Testing
 Environment: QA Environment
-Document Version: 1.0
-Project Status: Fictional Portfolio Project
+Project Type: Fictional Portfolio Project
 
 1. Purpose
-The purpose of this test plan is to define the testing approach, scope, test activities, test data, execution requirements, risks, assumptions, defect-management process, and completion criteria for the ClaimPay Special Payment Processing Enhancement.
+This document defines the high-level test scenarios for the ClaimPay Special Payment Processing Enhancement.
 
-The objective of testing is to verify that qualifying Special Payments are processed through the appropriate funding workflow while maintaining accurate payment, recovery, claim, and transaction information.
+The scenarios are derived from the ClaimPay business requirements and are designed to validate:
 
-Testing will also verify that existing Standard Payment functionality continues to operate correctly when the special-payment feature does not apply.
+Positive business flows
+Negative scenarios
+Business rules
+Security and access
+Data integrity
+End-to-end workflows
+Error handling
+Regression behavior
+Detailed test cases will be created from these scenarios.
 
-2. Project Overview
-ClaimPay is a fictional claims payment management application.
+2. Test Scenario Status
+The following statuses will be used during test execution:
 
-The Special Payment Processing Enhancement introduces special handling for designated payment transaction codes.
+Not Executed
+Pass
+Fail
+Blocked
+Not Applicable
+3. Configuration Scenarios
+CP-TS-001
+Requirement: CP-REQ-001
 
-When the appropriate configuration is enabled and a payment qualifies for special processing, the system is expected to:
+Verify Special Payment processing can be enabled through the global configuration.
 
-Identify the payment as a Special Payment.
-Apply the appropriate funding-account rules.
-Assign the Corporate Funding Account.
-Process the payment through the appropriate workflow.
-Create the applicable Offset Recovery.
-Maintain the relationship between the original payment and recovery transaction.
-Apply appropriate restrictions to allocations and transaction-code changes.
-Support applicable void, refund, upload, conversion, and payment-move processes.
-Maintain appropriate transaction and activity history.
-Existing Standard Payments should continue to follow standard processing rules.
+Test Type: Positive / Configuration
 
-3. Testing Objectives
-The primary testing objectives are to verify:
+CP-TS-002
+Requirement: CP-REQ-002
 
-Special-payment configuration can be controlled appropriately.
-Qualifying transaction codes trigger special processing.
-Nonqualifying transaction codes continue standard processing.
-The correct funding account is assigned.
-Offset Recoveries are created when applicable.
-Payment and recovery transactions remain properly related.
-Allocation restrictions are enforced.
-Transaction-code restrictions are enforced.
-Payment authority and hold rules continue to operate.
-Void processing handles related transactions correctly.
-Refund processing follows applicable funding rules.
-Uploaded payments follow special-payment rules.
-Provisional claims support applicable special-payment processing.
-Payment/recovery relationships survive claim conversion.
-Payment moves preserve the applicable related transactions.
-Unauthorized users cannot perform restricted actions.
-Processing failures do not create incomplete financial transactions.
-Existing payment-processing functionality is not negatively affected.
-4. Testing Approach
-Testing will use a business-flow-driven approach.
+Verify Special Payment processing can be enabled for an eligible business unit.
 
-Individual screens and functions will be validated while also testing complete workflows across payment creation, processing, recovery generation, transaction maintenance, and claim history.
+Test Type: Positive / Configuration
 
-The test approach will include:
+CP-TS-003
+Requirement: CP-REQ-003
 
-4.1 Functional Testing
-Validate individual ClaimPay functions against the documented business requirements.
+Verify Special Payment processing can be enabled for an eligible customer.
 
-Examples:
+Test Type: Positive / Configuration
 
-Special-payment identification
-Funding-account assignment
-Offset Recovery creation
-Allocation controls
-Void processing
-Refund processing
-Payment upload
-Payment move
-Transaction-code controls
-4.2 Positive Testing
-Verify that valid transactions successfully complete the expected business process.
+CP-TS-004
+Requirements: CP-REQ-003, CP-REQ-004
 
-Example:
+Verify Special Payment processing does not occur for a customer when the feature is disabled at customer level.
 
-Create eligible Special Payment ↓ Save Payment ↓ Corporate Funding Account Assigned ↓ Process Payment ↓ Offset Recovery Created ↓ Transaction History Updated
+Test Type: Negative / Configuration
 
-4.3 Negative Testing
-Verify that the system prevents invalid or prohibited actions.
+CP-TS-005
+Requirements: CP-REQ-005, CP-REQ-007
 
-Examples:
+Verify a Configuration Administrator can modify and save Special Payment configuration.
 
-Add another allocation to a Special Payment.
-Add a Special Payment allocation to an existing payment.
-Change a restricted transaction code directly.
-Release a payment hold without proper authorization.
-Process a Special Payment without required information.
-Perform restricted configuration changes using an unauthorized role.
-4.4 Business Rule Validation
-Validate business rules related to:
+Test Type: Positive / Security
 
-Qualifying transaction codes
-Account assignment
-Offset Recovery mapping
-Payment status
-Allocation restrictions
-Transaction-code restrictions
-Security permissions
-Configuration settings
-4.5 End-to-End Testing
-Validate complete payment workflows rather than isolated application functions.
+CP-TS-006
+Requirement: CP-REQ-006
 
-Primary end-to-end flow:
+Verify a Payment Specialist cannot change Special Payment configuration.
 
-Configuration ↓ Claim Selection ↓ Payment Creation ↓ Transaction Code Selection ↓ Special-Payment Identification ↓ Funding Account Assignment ↓ Payment Review / Hold ↓ Payment Processing ↓ Offset Recovery Creation ↓ Transaction History Validation ↓ Claim Activity Validation
+Test Type: Negative / Security
 
-Additional end-to-end flows include:
+4. Special-Payment Identification
+CP-TS-007
+Requirement: CP-REQ-008
 
-Special Payment → Void → Related Recovery Void
-Special Payment → Payment Move → Related Recovery Move
-Provisional Claim → Special Payment → Claim Conversion
-Payment Upload → Special Payment Processing
-Special Payment → Transaction-Code Change Request
-4.6 Regression Testing
-Regression testing will verify that existing payment-processing functionality continues to operate correctly after implementation of the enhancement.
+Verify a payment created with qualifying transaction code SP-110 is identified as a Special Payment.
 
-Regression coverage will include:
+Test Type: Positive
 
-Standard payment creation
-Standard funding-account assignment
-Standard allocation processing
-Multiple eligible standard allocations
-Existing payment approval/hold functionality
-Standard payment moves
-Standard transaction-code behavior
-Existing claim activity/history functionality
-Standard payment processing using nonqualifying codes
-4.7 Security and Role-Based Testing
-Testing will verify that functionality is restricted according to the assigned fictional user role.
+CP-TS-008
+Requirement: CP-REQ-008
 
-Roles used for this project include:
+Verify each configured qualifying Special Payment transaction code triggers the Special Payment process.
 
-Configuration Administrator
-Expected to manage authorized feature settings.
-
-Payment Specialist
-Expected to create and process eligible claim payments but not administer system configuration.
-
-Payment Operations Analyst
-Expected to process eligible transaction-code change and payment-move requests.
-
-Authorized Reviewer
-Expected to review and release eligible payment holds.
-
-Negative testing will verify that unauthorized roles cannot perform restricted actions.
-
-5. Requirements Coverage
-Testing will be mapped to the ClaimPay requirements using requirement IDs.
-
-Example:
-
-CP-REQ-013 ↓ CP-TS-013-01 ↓ CP-TC-013-01 ↓ CP-ER-013-01 ↓ CP-DEF-001, if required
-
-Requirements coverage will be documented in the Requirements Traceability Matrix.
-
-No requirement will be considered fully tested until the associated test coverage has been reviewed.
-
-6. In Scope
-The following functional areas are included in testing.
-
-6.1 Configuration
-Global configuration
-Business-unit configuration
-Customer configuration
-Configuration precedence
-Authorized configuration changes
-Unauthorized configuration attempts
-6.2 Payment Creation
-Special Payment creation
-Standard Payment creation
-Qualifying transaction codes
-Nonqualifying transaction codes
-Required information
-Payment save processing
-6.3 Funding Account
-Initial account behavior
-Corporate Funding Account assignment
-Customer Funding Account behavior
-Configuration-driven account selection
-Funding information displayed in payment history
-6.4 Offset Recovery
-Automatic recovery creation
-Recovery transaction-code mapping
-Separate recovery transaction
-Recovery amount
-Recovery status
-Recovery funding information
-Original payment/recovery relationship
-Transaction references
-6.5 Allocation Controls
-Existing Special Payment allocation
-New Special Payment allocation
-Multiple-allocation restrictions
-Standard allocation processing
-Validation messages
-6.6 Transaction-Code Controls
-Special-to-standard code change
-Standard-to-special code change
-Special-to-special code change
-Recovery-code change
-Scheduled-payment restrictions
-Processed-payment change requests
-Warning/validation behavior
-6.7 Payment Holds
-Payment authority validation
-Hold creation
-Unauthorized release attempts
-Authorized hold release
-Payment continuation after release
-6.8 Void Processing
-Original Special Payment void
-Related Offset Recovery void
-Transaction status
-Claim activity
-Transaction history
-6.9 Refund Processing
-Special Payment refund
-Funding-account assignment
-Feature-enabled behavior
-Feature-disabled behavior
-Payment-history validation
-6.10 Payment Upload
-Uploaded qualifying transactions
-Uploaded standard transactions
-Multiple allocations
-Separation of qualifying allocations
-Funding-account assignment
-Upload-processing result
-6.11 Provisional Claims
-Special Payment creation
-Offset Recovery creation
-Recovery restrictions
-Claim conversion
-Payment/recovery transfer
-Status preservation
-Relationship preservation
-6.12 Payment Move
-Payment-move request
-Authorized review
-Special Payment movement
-Related recovery movement
-Funding preservation
-Transaction-reference preservation
-Audit history
-6.13 Exception Handling
-Missing configuration
-Missing required information
-Processing failures
-Transaction rollback
-Recovery creation failure
-Retry after correction
-6.14 Security
-Configuration Administrator permissions
-Payment Specialist permissions
-Payment Operations Analyst permissions
-Reviewer permissions
-Unauthorized actions
-6.15 Regression
-Standard payments
-Standard funding
-Standard allocations
-Payment approval
-Standard payment moves
-Existing claim history
-Nonqualifying transaction codes
-7. Out of Scope
-The following areas are excluded from this fictional testing effort:
-
-Production banking connectivity
-Actual electronic funds transfer
-Real checks or vouchers
-General ledger reconciliation
-Financial reporting
-Tax reporting
-Regulatory filing
-Real customer notifications
-Production deployment validation
-Performance testing
-Load testing
-Mobile application testing
-Accessibility certification
-Disaster recovery testing
-Third-party banking certification
-8. Test Types
-The project will include:
-
-Test Type	Purpose
-Functional Testing	Verify requirements and application behavior
-Positive Testing	Verify valid workflows
-Negative Testing	Verify invalid actions are prevented
-Boundary Testing	Verify applicable input and financial boundaries
-Security Testing	Verify role-based access
-Integration Testing	Verify related payment processes work together
-End-to-End Testing	Verify complete business workflows
-Regression Testing	Verify existing functionality remains operational
-Data Validation	Verify stored and displayed transaction information
-9. Test Environment
-Testing will be performed in a fictional QA environment.
-
-No production environment or production financial information will be used.
-
-The test environment is expected to provide:
-
-ClaimPay application access
-QA database access when backend validation is required
-Payment-processing functionality
-Configuration-management functionality
-Payment-upload functionality
-Payment-move functionality
-Transaction-code change functionality
-10. Test Data
-All portfolio test data will be synthetic.
-
-Test data will include:
-
-Claims
-Standard claims
-Provisional claims
-Claims eligible for special processing
-Claims not eligible for special processing
-Example fictional claim numbers:
-
-CLM-10001
-CLM-10002
-CLM-10003
-TMP-20001
-Customer Configuration
-Customer with special processing enabled
-Customer with special processing disabled
-Transaction Codes
-Qualifying codes:
+Test Data:
 
 SP-110
 SP-220
 SP-330
 SP-440
 SP-550
-Nonqualifying code:
+Test Type: Positive / Data-Driven
 
-ST-600
-User Roles
-Configuration Administrator
-Payment Specialist
-Payment Operations Analyst
-Authorized Reviewer
-Payment Data
-Testing will include synthetic:
+CP-TS-009
+Requirement: CP-REQ-009
 
-Payment amounts
-Payees
-Transaction dates
-Transaction codes
-Payment statuses
-Funding-account assignments
-Allocations
-Refund amounts
-No actual financial, claimant, customer, or banking information will be used.
+Verify nonqualifying transaction code ST-600 follows the Standard Payment process.
 
-11. Test Execution Prerequisites
-Before test execution begins:
+Test Type: Negative / Regression
 
-Business requirements must be available.
-Test scenarios and detailed test cases must be prepared.
-The QA environment must be available.
-Required user roles must be configured.
-Test claims must be available.
-Synthetic payment data must be prepared.
-Qualifying transaction codes must be configured.
-Corporate Funding Account configuration must exist.
-Recovery-code mappings must be available.
-Required payment-processing functions must be operational.
-Known environment limitations must be documented.
-12. Entry Criteria
-Testing may begin when:
+CP-TS-010
+Requirement: CP-REQ-011
 
-Requirements are sufficiently stable for test execution.
-QA environment is accessible.
-Required functionality has been deployed to QA.
-Test users and permissions are available.
-Required test data is prepared.
-Test scenarios have been reviewed.
-Detailed test cases are ready for execution.
-Blocking environment issues have been resolved or documented.
-13. Exit Criteria
-Testing may be considered complete when:
+Verify qualifying Special Payment logic applies to a standard claim.
 
-Planned critical and high-priority test cases have been executed.
-Critical business workflows have passed.
-End-to-end testing has been completed.
-Regression testing has been completed.
-No unresolved blocking defects remain.
-Remaining known defects have been reviewed and documented.
-Requirements coverage has been reviewed.
-Test results have been documented.
-QA completion status has been communicated.
-Any unexecuted scenario will be clearly identified in the final test results together with the reason execution could not be completed.
+Test Type: Positive
 
-14. Defect Management
-When actual behavior differs from the expected result, the issue will be evaluated and documented as a defect when appropriate.
+CP-TS-011
+Requirement: CP-REQ-011
 
-A defect record will include:
+Verify qualifying Special Payment logic applies to a provisional claim.
 
-Defect ID
-Title
-Related requirement
-Related test case
-Environment
-Preconditions
-Steps to reproduce
-Expected result
-Actual result
-Severity
-Priority
-Supporting evidence
-Status
-Example defect ID:
+Test Type: Positive
 
-CP-DEF-001
+5. Funding-Account Assignment
+CP-TS-012
+Requirements: CP-REQ-012, CP-REQ-013
 
-Defects will be retested after a fix becomes available.
+Verify the applicable funding account changes to the Corporate Funding Account after an eligible Special Payment is successfully saved.
 
-Relevant regression testing will be performed when a defect fix may affect related functionality.
+Test Type: Positive / Integration
 
-15. Severity Guidelines
-Critical
-A critical business process cannot continue and no reasonable workaround exists.
+CP-TS-013
+Requirement: CP-REQ-015
+
+Verify a Standard Payment continues to use the applicable Customer Funding Account.
+
+Test Type: Regression
+
+CP-TS-014
+Requirement: CP-REQ-016
+
+Verify a qualifying transaction remains under Standard Payment funding rules when Special Payment processing is disabled.
+
+Test Type: Negative / Configuration
+
+CP-TS-015
+Requirement: CP-REQ-017
+
+Verify Payment History displays the funding account associated with the saved Special Payment.
+
+Test Type: Positive / Data Validation
+
+6. Offset Recovery Scenarios
+CP-TS-016
+Requirement: CP-REQ-018
+
+Verify an Offset Recovery is automatically created after a qualifying Special Payment is successfully processed.
+
+Test Type: Positive / Integration
+
+CP-TS-017
+Requirement: CP-REQ-019
+
+Verify the correct recovery transaction code is created for each Special Payment code.
+
+Expected Mapping:
+
+SP-110 → RC-710
+SP-220 → RC-720
+SP-330 → RC-730
+SP-440 → RC-730
+SP-550 → RC-730
+Test Type: Positive / Data-Driven
+
+CP-TS-018
+Requirement: CP-REQ-020
+
+Verify the Offset Recovery is created as a separate transaction rather than as an additional allocation on the original payment.
+
+Test Type: Positive
+
+CP-TS-019
+Requirements: CP-REQ-024, CP-REQ-025
+
+Verify the Offset Recovery remains associated with the original Special Payment and applies the appropriate financial offset.
+
+Test Type: Integration / Data Validation
+
+CP-TS-020
+Requirement: CP-REQ-026
+
+Verify the appropriate transaction reference is retained between the Special Payment and the Offset Recovery.
+
+Test Type: Data Validation
+
+CP-TS-021
+Requirement: CP-REQ-027
+
+Verify an Offset Recovery is not automatically created for a Standard Payment.
+
+Test Type: Negative / Regression
+
+7. Payment Review and Hold Scenarios
+CP-TS-022
+Requirements: CP-REQ-028, CP-REQ-031
+
+Verify a Special Payment requiring additional approval enters the appropriate review or hold workflow.
+
+Test Type: Positive
+
+CP-TS-023
+Requirement: CP-REQ-029
+
+Verify all required Special Payment information can be entered.
+
+Test Type: Positive
+
+CP-TS-024
+Requirement: CP-REQ-030
+
+Verify the system prevents Special Payment completion when mandatory information is missing.
+
+Test Type: Negative
+
+CP-TS-025
+Requirement: CP-REQ-032
+
+Verify an unauthorized user cannot release a restricted payment hold.
+
+Test Type: Negative / Security
+
+CP-TS-026
+Requirement: CP-REQ-033
+
+Verify an Authorized Reviewer can release an eligible payment hold.
+
+Test Type: Positive / Security
+
+8. Allocation Scenarios
+CP-TS-027
+Requirements: CP-REQ-034, CP-REQ-035
+
+Verify an additional allocation cannot be added to an existing Special Payment.
+
+Test Type: Negative
+
+CP-TS-028
+Requirement: CP-REQ-036
+
+Verify a Special Payment allocation cannot be added to a payment that already contains another allocation.
+
+Test Type: Negative
+
+CP-TS-029
+Requirement: CP-REQ-037
+
+Verify an appropriate validation message is displayed when an additional allocation is prohibited.
+
+Test Type: Negative / Validation
+
+CP-TS-030
+Requirement: CP-REQ-038
+
+Verify multiple eligible Standard Payment allocations can still be created.
+
+Test Type: Regression
+
+9. Transaction-Code Change Scenarios
+CP-TS-031
+Requirement: CP-REQ-039
+
+Verify a scheduled Special Payment cannot be directly changed to a standard transaction code.
+
+Test Type: Negative
+
+CP-TS-032
+Requirement: CP-REQ-040
+
+Verify a scheduled Standard Payment cannot be directly changed to a qualifying Special Payment code.
+
+Test Type: Negative
+
+CP-TS-033
+Requirement: CP-REQ-041
+
+Verify one scheduled Special Payment transaction code cannot be directly changed to another qualifying Special Payment code.
+
+Test Type: Negative
+
+CP-TS-034
+Requirement: CP-REQ-042
+
+Verify the transaction code of a system-created Offset Recovery cannot be directly changed.
+
+Test Type: Negative
+
+CP-TS-035
+Requirement: CP-REQ-043
+
+Verify an appropriate validation message is displayed for a prohibited transaction-code change.
+
+Test Type: Negative / Validation
+
+CP-TS-036
+Requirements: CP-REQ-044, CP-REQ-045
+
+Verify an eligible processed payment can be changed through the approved transaction-code change-request workflow.
+
+Test Type: Positive / Workflow
+
+CP-TS-037
+Requirement: CP-REQ-046
+
+Verify a warning is displayed when a transaction-code change could affect the Special Payment and Offset Recovery relationship.
+
+Test Type: Validation
+
+10. Void Scenarios
+CP-TS-038
+Requirement: CP-REQ-048
+
+Verify an eligible processed Special Payment can be voided.
+
+Test Type: Positive
+
+CP-TS-039
+Requirement: CP-REQ-049
+
+Verify the related Offset Recovery is voided when the original Special Payment is voided.
+
+Test Type: Positive / Integration
+
+CP-TS-040
+Requirements: CP-REQ-050, CP-REQ-051
+
+Verify the appropriate claim activity is created when a Special Payment and related Offset Recovery are voided.
+
+Validate that the activity contains the required transaction information.
+
+Test Type: Positive / Data Validation
+
+CP-TS-041
+Requirement: CP-REQ-052
+
+Verify payments created under Standard Payment processing continue to follow the appropriate standard void workflow.
+
+Test Type: Regression
+
+11. Refund Scenarios
+CP-TS-042
+Requirement: CP-REQ-054
+
+Verify an authorized user can create an eligible refund using a qualifying Special Payment transaction code.
+
+Test Type: Positive
+
+CP-TS-043
+Requirement: CP-REQ-055
+
+Verify an eligible refund receives the Corporate Funding Account when Special Payment processing is enabled.
+
+Test Type: Positive
+
+CP-TS-044
+Requirement: CP-REQ-056
+
+Verify a refund follows standard funding rules when Special Payment processing is disabled.
+
+Test Type: Negative / Configuration
+
+CP-TS-045
+Requirement: CP-REQ-057
+
+Verify Payment History displays the appropriate funding information for the refund.
+
+Test Type: Data Validation
+
+12. Payment Upload Scenarios
+CP-TS-046
+Requirement: CP-REQ-059
+
+Verify the Payment Upload process identifies an uploaded transaction containing a qualifying Special Payment code.
+
+Test Type: Positive / Integration
+
+CP-TS-047
+Requirement: CP-REQ-060
+
+Verify each uploaded qualifying Special Payment allocation is created as a separate payment when the source contains multiple allocations.
+
+Test Type: Positive / Integration
+
+CP-TS-048
+Requirement: CP-REQ-061
+
+Verify eligible nonqualifying uploaded allocations continue to follow Standard Payment rules.
+
+Test Type: Regression
+
+CP-TS-049
+Requirement: CP-REQ-062
+
+Verify an uploaded qualifying Special Payment receives the Corporate Funding Account when the feature is enabled.
+
+Test Type: Positive
+
+CP-TS-050
+Requirement: CP-REQ-063
+
+Verify the upload process identifies whether uploaded payment records were processed successfully or failed validation.
+
+Test Type: Positive / Negative
+
+13. Provisional Claim Scenarios
+CP-TS-051
+Requirement: CP-REQ-064
+
+Verify an eligible Special Payment can be created on a provisional claim.
+
+Test Type: Positive
+
+CP-TS-052
+Requirement: CP-REQ-065
+
+Verify an Offset Recovery is created for an eligible Special Payment on a provisional claim.
+
+Test Type: Positive / Integration
+
+CP-TS-053
+Requirement: CP-REQ-066
+
+Verify a user cannot directly alter a system-created Offset Recovery on a provisional claim.
+
+Test Type: Negative
+
+CP-TS-054
+Requirements: CP-REQ-067, CP-REQ-068
+
+Verify the Special Payment and Offset Recovery transfer correctly when a provisional claim is converted to a standard claim.
+
+Verify the recovery retains its applicable status.
+
+Test Type: Integration
+
+CP-TS-055
+Requirement: CP-REQ-069
+
+Verify the relationship between the Special Payment and Offset Recovery is maintained after claim conversion.
+
+Test Type: Integration / Data Validation
+
+14. Payment-Move Scenarios
+CP-TS-056
+Requirement: CP-REQ-070
+
+Verify an authorized user can submit a payment-move request for an eligible Special Payment.
+
+Test Type: Positive
+
+CP-TS-057
+Requirement: CP-REQ-071
+
+Verify a Payment Operations Analyst can review and complete an eligible payment-move request.
+
+Test Type: Positive / Security
+
+CP-TS-058
+Requirement: CP-REQ-072
+
+Verify the related Offset Recovery moves with the original Special Payment.
+
+Test Type: Integration
+
+CP-TS-059
+Requirements: CP-REQ-073, CP-REQ-074
+
+Verify Special Payment and recovery funding assignments remain unchanged after the payment move.
+
+Test Type: Integration / Data Validation
+
+CP-TS-060
+Requirement: CP-REQ-075
+
+Verify applicable transaction references are preserved after a payment move.
+
+Test Type: Data Validation
+
+CP-TS-061
+Requirement: CP-REQ-076
+
+Verify restricted Special Payments cannot bypass the approved payment-move workflow.
+
+Test Type: Negative / Security
+
+15. Exception-Handling Scenarios
+CP-TS-062
+Requirement: CP-REQ-077
+
+Verify Special Payment processing does not partially complete when required configuration is unavailable.
+
+Test Type: Negative / Exception Handling
+
+CP-TS-063
+Requirements: CP-REQ-078, CP-REQ-079
+
+Verify a failed Special Payment remains in the appropriate unprocessed status and an appropriate processing result is provided.
+
+Test Type: Negative / Exception Handling
+
+CP-TS-064
+Requirement: CP-REQ-080
+
+Verify an Offset Recovery is not created without a successfully processed related Special Payment.
+
+Test Type: Negative / Data Integrity
+
+CP-TS-065
+Requirement: CP-REQ-081
+
+Verify a processing failure does not leave incomplete or unintended financial data on the claim.
+
+Test Type: Negative / Data Integrity
+
+CP-TS-066
+Requirement: CP-REQ-082
+
+Verify an eligible failed payment can be reprocessed after the cause of the failure is corrected.
+
+Test Type: Positive / Recovery Testing
+
+16. Audit and Activity-History Scenarios
+CP-TS-067
+Requirement: CP-REQ-083
+
+Verify relevant Special Payment activity is recorded in claim history.
+
+Test Type: Positive / Audit
+
+CP-TS-068
+Requirement: CP-REQ-084
+
+Verify the Offset Recovery appears in the appropriate transaction history.
+
+Test Type: Positive / Audit
+
+CP-TS-069
+Requirement: CP-REQ-085
+
+Verify configuration changes retain sufficient audit information.
+
+Test Type: Security / Audit
+
+CP-TS-070
+Requirement: CP-REQ-086
+
+Verify transaction-code change requests retain appropriate request and review information.
+
+Test Type: Audit
+
+CP-TS-071
+Requirement: CP-REQ-087
+
+Verify payment-move history retains appropriate source, destination, status, and review information.
+
+Test Type: Audit
+
+17. Security Scenarios
+CP-TS-072
+Requirement: CP-REQ-088
+
+Verify a Payment Specialist can perform permitted payment functions but cannot modify configuration.
+
+Test Type: Positive / Negative / Security
+
+CP-TS-073
+Requirement: CP-REQ-089
+
+Verify a Configuration Administrator can maintain authorized Special Payment settings.
+
+Test Type: Security
+
+CP-TS-074
+Requirement: CP-REQ-090
+
+Verify a Payment Operations Analyst can process authorized payment-move and transaction-code change requests.
+
+Test Type: Security
+
+CP-TS-075
+Requirement: CP-REQ-091
+
+Verify an Authorized Reviewer can perform the applicable payment-hold review and release process.
+
+Test Type: Security
+
+CP-TS-076
+Requirement: CP-REQ-092
+
+Verify unauthorized users cannot perform restricted Special Payment functions.
+
+Test Type: Negative / Security
+
+18. Regression Scenarios
+CP-TS-077
+Requirement: CP-REQ-093
+
+Verify Standard Payment creation continues to operate with nonqualifying transaction codes.
+
+Test Type: Regression
+
+CP-TS-078
+Requirement: CP-REQ-094
+
+Verify a Standard Payment continues to use the appropriate Customer Funding Account.
+
+Test Type: Regression
+
+CP-TS-079
+Requirement: CP-REQ-095
+
+Verify Standard Payments do not automatically generate Offset Recoveries.
+
+Test Type: Regression
+
+CP-TS-080
+Requirement: CP-REQ-096
+
+Verify eligible Standard Payment allocations can continue to be edited.
+
+Test Type: Regression
+
+CP-TS-081
+Requirement: CP-REQ-097
+
+Verify multiple eligible Standard Payment allocations can continue to be created.
+
+Test Type: Regression
+
+CP-TS-082
+Requirement: CP-REQ-098
+
+Verify eligible Standard Payments continue to support standard payment-move processing.
+
+Test Type: Regression
+
+CP-TS-083
+Requirement: CP-REQ-099
+
+Verify existing payment authority, hold, review, and release behavior continues to operate.
+
+Test Type: Regression
+
+CP-TS-084
+Requirement: CP-REQ-100
+
+Verify existing claim activity/history functionality continues to operate.
+
+Test Type: Regression
+
+19. End-to-End Scenarios
+CP-TS-E2E-001
+Requirement: CP-REQ-101
+
+Validate complete Special Payment processing
+Configuration Enabled ↓ Open Eligible Claim ↓ Create Special Payment ↓ Select Qualifying Transaction Code ↓ Enter Required Information ↓ Save Payment ↓ Corporate Funding Account Assigned ↓ Review / Release Payment if Required ↓ Process Payment ↓ Offset Recovery Created ↓ Validate Payment History ↓ Validate Recovery ↓ Validate Claim Activity
+
+Expected Outcome:
+
+The complete Special Payment workflow completes successfully, and the related payment, recovery, funding, transaction, and activity information remains consistent.
+
+CP-TS-E2E-002
+Requirement: CP-REQ-102
+
+Validate Special Payment void workflow
+Processed Special Payment ↓ Related Offset Recovery Exists ↓ Void Original Special Payment ↓ Original Payment Voided ↓ Offset Recovery Voided ↓ Claim Activity Created ↓ Validate Transaction History
+
+Expected Outcome:
+
+The original Special Payment and its related Offset Recovery are handled consistently through the complete void process.
+
+CP-TS-E2E-003
+Requirement: CP-REQ-103
+
+Validate Special Payment move workflow
+Processed Special Payment ↓ Related Offset Recovery ↓ Submit Payment-Move Request ↓ Authorized Review ↓ Move Original Payment ↓ Move Related Recovery ↓ Validate Destination Claim ↓ Validate Funding ↓ Validate References ↓ Validate Audit History
+
+Expected Outcome:
+
+The Special Payment and associated Offset Recovery move through the approved workflow while retaining required relationships and transaction information.
+
+CP-TS-E2E-004
+Validate Provisional Claim conversion workflow
+Provisional Claim ↓ Create Special Payment ↓ Process Payment ↓ Offset Recovery Created ↓ Convert to Standard Claim ↓ Validate Payment Transfer ↓ Validate Recovery Transfer ↓ Validate Recovery Status ↓ Validate Payment/Recovery Relationship
+
+Test Type: End-to-End / Integration
+
+CP-TS-E2E-005
+Validate configuration-off workflow
+Disable Special Payment Processing ↓ Open Eligible Claim ↓ Create Payment Using Qualifying Code ↓ Save Payment ↓ Validate Standard Funding Behavior ↓ Validate Special Recovery Is Not Created ↓ Validate Transaction History
+
+Test Type: End-to-End / Negative / Regression
+
+20. Scenario Coverage Summary
+The test scenarios provide coverage for:
+
+Configuration
+User security
+Special Payment identification
+Standard Payment differentiation
+Funding-account assignment
+Offset Recovery creation
+Payment/recovery relationships
+Payment authority and holds
+Allocation restrictions
+Transaction-code restrictions
+Void processing
+Refund processing
+Payment Upload
+Provisional Claim processing
+Claim conversion
+Payment moves
+Exception handling
+Data integrity
+Audit history
+Regression
+End-to-end business workflows
+21. Traceability Approach
+Detailed test cases will be linked back to these scenarios.
 
 Example:
 
-A qualifying Special Payment causes incorrect financial transactions affecting multiple claims.
+CP-REQ-018 ↓ CP-TS-016 ↓ CP-TC-016-01 CP-TC-016-02 CP-TC-016-03 ↓ Execution Result ↓ Defect, if applicable
 
-High
-A major business function fails but testing can continue in other areas.
+One test scenario may produce multiple detailed test cases when different test data, user roles, conditions, or negative paths must be validated.
 
-Example:
-
-A processed Special Payment does not create the required Offset Recovery.
-
-Medium
-A function behaves incorrectly but the primary business workflow can continue.
-
-Example:
-
-An expected validation message is incorrect while the transaction is still properly prevented.
-
-Low
-A minor issue exists with limited impact on the business workflow.
-
-Example:
-
-Display formatting is inconsistent but transaction processing remains correct.
-
-16. Risks
-Potential testing risks include:
-
-RISK-001 — Test Data Availability
-Risk: Required claim conditions may not be available.
-
-Impact: Certain scenarios may not be executable.
-
-Mitigation: Identify required data during test-case development and prepare synthetic test data before execution.
-
-RISK-002 — Environment Availability
-Risk: QA environment interruptions could affect execution.
-
-Impact: Testing may be temporarily blocked.
-
-Mitigation: Document environment issues separately from application defects and resume impacted tests after restoration.
-
-RISK-003 — Configuration Dependency
-Risk: Incorrect configuration could cause valid tests to produce unexpected results.
-
-Impact: Results could be incorrectly interpreted as application defects.
-
-Mitigation: Verify test configuration before executing configuration-sensitive scenarios.
-
-RISK-004 — Role and Access Dependency
-Risk: Required test-user permissions may be unavailable.
-
-Impact: Security and approval workflows may not be executable.
-
-Mitigation: Verify required test roles before execution.
-
-RISK-005 — Requirement Changes
-Risk: Business rules may change while testing is underway.
-
-Impact: Test scenarios, test cases, or expected results may become outdated.
-
-Mitigation: Update requirements traceability and impacted test artifacts when approved requirement changes occur.
-
-17. Assumptions
-The test plan assumes:
-
-Approved fictional requirements are available.
-Required QA functionality has been deployed.
-Required dependencies are available.
-Test environment access is maintained during execution.
-Synthetic test data is available.
-Required user roles are configured.
-Qualifying payment and recovery codes are configured.
-Funding-account configuration is available.
-Scope changes will be incorporated into the appropriate test artifacts before affected testing is completed.
-18. Test Deliverables
-The project will produce the following QA artifacts:
-
-Business Requirements
-QA Test Plan
-Test Scenarios
-Detailed Test Cases
-Requirements Traceability Matrix
-Test Execution Results
-Sample Defect Reports
-Regression Results
-Test Summary Report
-19. Traceability
-Requirements will be traced through the testing lifecycle.
-
-Example:
-
-CP-REQ-018 ↓ CP-TS-018-01 ↓ CP-TC-018-01 ↓ CP-ER-018-01 ↓ CP-DEF-001, if applicable
-
-Traceability will allow the portfolio to demonstrate whether each business requirement has appropriate test coverage.
-
-20. Test Execution Status
-Each executed test case will use one of the following statuses:
-
-Pass
-Fail
-Blocked
-Not Executed
-Not Applicable
-Where a test cannot be executed, the reason will be documented rather than treating the scenario as passed.
-
-21. Test Completion Summary
-At the conclusion of testing, a Test Summary Report will document:
-
-Scope tested
-Requirements covered
-Test cases executed
-Passed tests
-Failed tests
-Blocked tests
-Tests not executed
-Defects identified
-Remaining known issues
-Regression results
-End-to-end testing results
-Overall QA conclusion
 22. Portfolio Disclaimer
 ClaimPay is a fictional application created solely for portfolio and learning purposes.
 
-This project demonstrates manual QA methodologies such as requirements analysis, test planning, test scenario design, test-case development, requirements traceability, functional testing, negative testing, end-to-end testing, regression testing, defect management, and test-result documentation.
-
-All application names, screens, account names, transaction codes, roles, claims, customers, payment information, business rules, test data, and workflows presented in this repository are fictional or generalized.
+All application names, transaction codes, account names, claims, users, roles, financial information, configurations, business rules, workflows, and test data presented in this document are fictional or generalized.
 
 No confidential employer, client, claimant, banking, production, or proprietary information is included.
