@@ -8,6 +8,7 @@ The project demonstrates how policy information is received from an external sou
 Testing also covers the complete business lifecycle from incident creation through claim creation, financial processing, and claim closure.
 
 🎯 Testing Objective
+
 The primary objective of this project is to demonstrate validation of data and business processes across multiple integrated systems.
 
 The testing approach verifies that:
@@ -23,7 +24,9 @@ Policy information is revalidated during claim processing.
 An incident can be converted successfully into a claim.
 Financial transactions can be completed.
 The complete claim lifecycle operates successfully.
+
 🏗️ Fictional System Architecture
+
 Phase 1 – Policy Data Integration
 External Policy Provider ↓ Policy Feed ↓ Secure File Gateway ↓ Informatica PowerCenter ↓ Oracle Landing Tables ↓ Data Transformation ↓ Staging Tables ↓ Validation ↙ ↘ Invalid Valid ↓ ↓ Error Log Integration Tables ↓ Insert / Update ↓ Policy Repository
 
@@ -37,6 +40,7 @@ Phase 4 – Complete Business Lifecycle
 Policy Feed ↓ Informatica Processing ↓ Oracle Validation ↓ PolicyHub Repository ↓ Incident Creation ↓ Policy Search ↓ Policy Selection ↓ Incident Sent to ClaimCore ↓ Policy Revalidation ↓ Incident Converted to Claim ↓ Reserve Creation ↓ Payment Processing ↓ Claim Closure
 
 🧪 Testing Areas
+
 ETL Testing
 Source file validation
 Informatica workflow validation
@@ -79,6 +83,7 @@ Policy Feed ↓ ETL ↓ Policy Repository ↓ Incident ↓ Policy Search ↓ Cla
 The objective is to verify that the same fictional policy information remains accurate and available throughout the complete business workflow.
 
 🛠️ Tools & Technologies
+
 Informatica PowerCenter
 Oracle Database
 Toad for Oracle
@@ -91,7 +96,9 @@ ETL Testing
 Manual Functional Testing
 Integration Testing
 End-to-End Testing
+
 📂 Project Artifacts
+
 This portfolio project will include:
 
 Sanitized Business Requirements
@@ -107,7 +114,9 @@ End-to-End Lifecycle Testing
 Test Results
 Sample Defects
 Requirements Traceability Matrix
+
 🔒 Portfolio Disclaimer
+
 PolicyHub is a fictional project created solely for portfolio and learning purposes.
 
 Application names, interfaces, databases, schemas, tables, fields, endpoints, file layouts, policy information, claims, users, financial information, business rules, workflows, test data, and system configurations presented in this repository are fictional or generalized.
