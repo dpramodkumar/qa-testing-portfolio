@@ -7,7 +7,8 @@ This portfolio demonstrates how I approach software quality across business appl
 
 The projects use fictional applications, synthetic test data, and generalized business processes created specifically for portfolio demonstration.
 
-Portfolio Projects
+Portfolio Projects:
+
 This portfolio currently contains three QA projects, each demonstrating a different area of software testing.
 
 1. ClaimPay – Manual Functional & Business Workflow Testing
@@ -21,7 +22,7 @@ Testing demonstrated
 Requirements analysis | Test planning | Functional testing | Positive and negative testing | Business-rule validation
 Security and role-based testing | Payment workflow testing | Integration testing | End-to-end testing | Regression testing | Defect documentation | Test execution reporting | Requirements Traceability Matrix (RTM)
 
-QA lifecycle demonstrated
+QA lifecycle demonstrated:
 
 Business Requirements
         
@@ -49,7 +50,7 @@ Defects
         
 Requirements Traceability
 
-Project artifacts
+Project artifacts:
 
 1. Business Requirements
 
@@ -71,12 +72,11 @@ data-integration-testing/policyhub
 
 PolicyHub is a fictional multi-system insurance data integration project demonstrating validation of policy data from source-file ingestion through Informatica PowerCenter, Oracle Database processing, downstream service integration, incident processing, and the complete claim lifecycle.
 
-Testing demonstrated
+Testing demonstrated:
 
 Informatica PowerCenter testing | ETL testing | Source-to-target validation | Oracle database testing | SQL validation | Toad for Oracle | Data transformation validation | Record-count reconciliation | Reject/error processing | Insert and update validation | Policy service integration | Cross-application testing | Incident-to-claim integration | Financial workflow validation | End-to-end testing
 
-Technical workflow demonstrated
-Plain Text
+Technical workflow demonstrated:
 
 Policy Feed
 
@@ -124,7 +124,7 @@ Payment
         
 Claim Closure
 
-Project artifacts
+Project artifacts:
 
 System Architecture | Business Requirements | QA Test Plan | ETL Test Scenarios | Source-to-Target Mapping | Detailed ETL Test Cases | Oracle / Toad SQL Validation | Policy Service Testing | Incident-to-Claim Lifecycle Testing | Detailed Test Results | Requirements Traceability Matrix
 
@@ -136,11 +136,10 @@ api-integration-testing/referralconnect
 
 ReferralConnect is a fictional multi-system referral integration project demonstrating API/integration testing, Single Sign-On, cross-application synchronization, and bidirectional data flows.
 
-Testing demonstrated
+Testing demonstrated:
 
 API testing | Integration testing | Request and response validation | Field-mapping validation | Single Sign-On testing | Authorization testing | API-to-UI reconciliation | Bidirectional synchronization | Examiner synchronization | Referral-status synchronization | Existing-record update validation | Duplicate prevention | Negative API testing | Error handling | End-to-end integration testing | Integration flows demonstrated | Existing referral during intake
 
-Plain Text
 ReferralHub
         
         ↓
@@ -159,9 +158,8 @@ Incident Converted to Claim
         
 Referral Available on Claim
 
-New referral integration
+New referral integration:
 
-Plain Text
 
 ReferralHub
         
@@ -177,9 +175,8 @@ ClaimCore
         
 Referral Displayed in UI
 
-Examiner synchronization
+Examiner synchronization:
 
-Plain Text
 
 ClaimCore
         
@@ -199,9 +196,7 @@ ReferralHub
         
 Existing Referral Updated
  
-Referral-status synchronization
-
-Plain Text
+Referral-status synchronization:
 
 ReferralHub
         
@@ -221,30 +216,21 @@ ClaimCore
         
 Status Updated in UI
 
-Project artifacts
+Project artifacts: 
 
-Integration Architecture
-Business Requirements
-API Integration Test Plan
-API Test Scenarios
-Request / Response Validation
-Detailed Integration Test Cases
-Expanded SSO Test Cases
-End-to-End Referral Lifecycle
-Detailed Test Results
-Requirements Traceability Matrix
+Integration Architecture | Business Requirements | API Integration Test Plan | API Test Scenarios | Request / Response Validation | Detailed Integration Test Cases | Expanded SSO Test Cases | End-to-End Referral Lifecycle | Detailed Test Results | Requirements Traceability Matrix
+
 ./api-integration-testing/referralconnect/
 
-Tools & Technologies
+Tools & Technologies: 
 
 Test Management & Collaboration | ALM / Quality Center | Azure DevOps | API & Integration Testing | Postman | Bruno | API / Integration Validation | Request / Response Validation | XML Validation | JSON Validation | Single Sign-On Testing | Database & Data Validation | SQL | Oracle Database | Toad for Oracle | Database Validation | Source-to-Target Validation | Data Reconciliation | ETL & Data Integration | Informatica PowerCenter | ETL Testing | Data Transformation Validation | File-Based Integration Testing | Error / Reject Validation | Supporting Tools | PuTTY | FileZilla
 
-My Testing Approach
+My Testing Approach:
 
 My testing approach emphasizes understanding the complete business process rather than validating individual screens in isolation.
-I typically approach testing as:
 
-Plain Text
+I typically approach testing as:
 
 Requirement
         
@@ -297,8 +283,8 @@ Requirements Traceability
 Test Completion
  
 For integrated applications, I focus on validating data at each applicable checkpoint.
+
 Example:
-Plain Text
 
 Source System
         
@@ -322,7 +308,8 @@ The objective is not only to verify that an integration transaction was technica
 
 
 📊 QA Skills Demonstrated Across This Portfolio
-Testing Area	ClaimPay	PolicyHub	ReferralConnectRequirements Analysis	✅	✅	✅
+Testing Area	ClaimPay	PolicyHub	ReferralConnectRequirements Analysis	
+                ✅	✅	✅
 Test Planning	✅	✅	✅
 Manual Functional Testing	✅	✅	✅
 Negative Testing	✅	✅	✅
