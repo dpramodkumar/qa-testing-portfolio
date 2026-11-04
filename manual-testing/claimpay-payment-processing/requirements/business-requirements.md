@@ -1,6 +1,9 @@
 ClaimPay Business Requirements
+
 Special Payment Processing Enhancement
+
 1. Document Purpose
+
 This document defines the fictional business requirements for the ClaimPay Special Payment Processing Enhancement.
 
 The requirements will be used to support:
@@ -14,7 +17,9 @@ Test execution
 Defect reporting
 Regression testing
 Test closure reporting
+
 2. Project Overview
+
 ClaimPay is a fictional claims payment management application.
 
 The application allows authorized users to create, review, process, update, move, refund, and void claim-related financial transactions.
@@ -24,6 +29,7 @@ The purpose of this enhancement is to identify designated special-payment transa
 For each successfully processed special payment, the system will create a related offset recovery transaction. The offset recovery helps maintain accurate claim financial balances.
 
 3. Business Problem
+
 Under the standard process, claim payments are funded through a Customer Funding Account.
 
 Certain payment categories represent organization-funded obligations and should not be charged to the customer.
@@ -36,7 +42,9 @@ Create a related offset recovery transaction.
 Maintain the relationship between the original payment and recovery.
 Apply appropriate controls for voids, refunds, edits, and payment moves.
 Preserve the existing behavior for nonqualifying payments.
+
 4. Definitions
+
 Term	Definition
 ClaimPay	Fictional claims payment management application
 Customer Funding Account	Standard account used to fund customer claim payments
@@ -54,28 +62,38 @@ Scheduled Status	Payment created but not fully processed
 Processed Status	Payment successfully completed by the payment-processing workflow
 Recovery Status	Status assigned to an offset recovery transaction
 Hold Status	Payment awaiting review or authorization
+
 5. Fictional Transaction Codes
+
 The following fictional transaction codes are used only for this portfolio project.
 
 5.1 Qualifying Special-Payment Codes
+
 Transaction Code	Description
 SP-110	Special Indemnity Adjustment
 SP-220	Special Medical Adjustment
 SP-330	Provider Interest Adjustment
 SP-440	Regulatory Interest Adjustment
 SP-550	General Special Adjustment
+
 5.2 Offset Recovery Codes
+
 Original Transaction Code	Offset Recovery Code	Recovery Description
 SP-110	RC-710	Indemnity Offset Recovery
 SP-220	RC-720	Medical Offset Recovery
 SP-330	RC-730	Expense Offset Recovery
 SP-440	RC-730	Expense Offset Recovery
 SP-550	RC-730	Expense Offset Recovery
+
 5.3 Nonqualifying Code
+
 Transaction Code	Description
 ST-600	Standard Customer Adjustment
+
 6. Functional Requirements
+
 6.1 Feature Configuration
+
 CP-REQ-001 — Global Feature Configuration
 The system shall provide a configuration setting that controls whether special-payment processing is enabled.
 
@@ -98,6 +116,7 @@ CP-REQ-007 — Configuration Persistence
 A saved configuration change shall remain effective after the user exits and reopens the configuration area.
 
 6.2 Special-Payment Identification
+
 CP-REQ-008 — Qualifying Transaction Identification
 The system shall identify a payment as a Special Payment when the payment uses one of the configured qualifying transaction codes.
 
@@ -111,6 +130,7 @@ CP-REQ-011 — Standard and Provisional Claims
 Special-payment processing shall apply to both standard claims and provisional claims.
 
 6.3 Funding Account Assignment
+
 CP-REQ-012 — Initial Account Display
 When a user begins creating a Special Payment, the payment-entry screen may initially display the Customer Funding Account.
 
@@ -130,6 +150,7 @@ CP-REQ-017 — Payment History Display
 The payment-history area shall display the funding account associated with the saved payment.
 
 6.4 Offset Recovery Creation
+
 CP-REQ-018 — Automatic Offset Recovery
 After a qualifying Special Payment is successfully processed through the Corporate Funding Account, the system shall automatically create an Offset Recovery.
 
@@ -161,6 +182,7 @@ CP-REQ-027 — No Recovery for Standard Payment
 The system shall not create an Offset Recovery for a payment created with a nonqualifying transaction code.
 
 6.5 Payment Processing and Holds
+
 CP-REQ-028 — Special-Payment Review
 A Special Payment requiring additional review shall be placed into the applicable review or hold workflow.
 
@@ -169,6 +191,7 @@ When required by the qualifying transaction code, the user shall provide:
 
 A reason for the Special Payment
 The date of the event that caused the Special Payment
+
 CP-REQ-030 — Missing Required Information
 The system shall prevent completion of a Special Payment when mandatory special-payment information is missing.
 
@@ -182,6 +205,7 @@ CP-REQ-033 — Authorized Hold Release
 An authorized reviewer shall be allowed to release an eligible payment from hold.
 
 6.6 Allocation Restrictions
+
 CP-REQ-034 — Single Special-Payment Allocation
 A Special Payment shall contain only one payment allocation.
 
@@ -198,6 +222,7 @@ CP-REQ-038 — Standard Multiple Allocations
 The system shall continue to allow multiple allocations when all allocations use eligible nonqualifying transaction codes.
 
 6.7 Transaction-Code Controls
+
 CP-REQ-039 — Scheduled Special-to-Standard Change
 The system shall prevent a user from directly changing a scheduled Special Payment transaction code to a standard transaction code.
 
@@ -226,6 +251,7 @@ CP-REQ-047 — Direct-Edit Restriction
 The system shall prevent users from bypassing the approved change-request workflow by editing an eligible processed Special Payment directly.
 
 6.8 Void Processing
+
 CP-REQ-048 — Void Special Payment
 An authorized user shall be allowed to void an eligible Special Payment.
 
@@ -243,6 +269,7 @@ Payee or recipient
 Original payment amount
 Void date
 Confirmation that the related Offset Recovery was voided
+
 CP-REQ-052 — Standard-Process Void
 When a qualifying transaction was originally processed through the Customer Funding Account, the system shall follow the applicable standard-process void workflow.
 
@@ -250,6 +277,7 @@ CP-REQ-053 — Void Notification
 When required by the standard-process workflow, the system shall create a notification containing relevant transaction and claim information.
 
 6.9 Refund Processing
+
 CP-REQ-054 — Special-Payment Refund
 An authorized user shall be allowed to create an eligible refund using a qualifying Special Payment transaction code.
 
@@ -266,6 +294,7 @@ CP-REQ-058 — Refund Validation
 The system shall apply the configured payment and transaction-code validations to the refund.
 
 6.10 Payment Upload
+
 CP-REQ-059 — Uploaded Special Payments
 The payment-upload process shall identify transactions containing qualifying Special Payment codes.
 
@@ -282,6 +311,7 @@ CP-REQ-063 — Upload Result
 The upload process shall provide a final status indicating whether the uploaded payment records were processed successfully or failed validation.
 
 6.11 Provisional-Claim Processing
+
 CP-REQ-064 — Provisional Special Payment
 The system shall allow an authorized user to create an eligible Special Payment on a provisional claim.
 
@@ -443,41 +473,41 @@ CP-REQ-101 — End-to-End Special-Payment Workflow
 
 The system shall support the following end-to-end workflow:
 
-The Configuration Administrator enables special-payment processing.
+    The Configuration Administrator enables special-payment processing.
 
-The Payment Specialist opens an eligible claim.
+    The Payment Specialist opens an eligible claim.
 
-The Payment Specialist creates a payment using a qualifying transaction code.
+    The Payment Specialist creates a payment using a qualifying transaction code.
 
-The system validates required information.
+    The system validates required information.
 
-The system assigns the Corporate Funding Account.
+    The system assigns the Corporate Funding Account.
 
-The payment enters the appropriate review or processing workflow.
+    The payment enters the appropriate review or processing workflow.
 
-An authorized user releases the payment when review is required.
+    An authorized user releases the payment when review is required.
 
-The payment is processed successfully.
+    The payment is processed successfully.
 
-The system creates the related Offset Recovery.
+    The system creates the related Offset Recovery.
 
-The payment history displays the original payment and recovery.
+    The payment history displays the original payment and recovery.
 
-The user verifies the corresponding financial and activity records.
+    The user verifies the corresponding financial and activity records.
 
 CP-REQ-102 — End-to-End Void Workflow
 
 The system shall support the following void workflow:
 
-The user selects an eligible processed Special Payment.
+    The user selects an eligible processed Special Payment.
 
-The user requests that the payment be voided.
+    The user requests that the payment be voided.
 
-The system voids the original payment.
+    The system voids the original payment.
 
-The system voids the related Offset Recovery.
+    The system voids the related Offset Recovery.
 
-The system records an activity note.
+    The system records an activity note.
 
 The claim history displays the updated transaction status.
 
