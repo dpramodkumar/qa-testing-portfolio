@@ -9,7 +9,7 @@ The projects use fictional applications, synthetic test data, and generalized bu
 
 Portfolio Projects:
 
-This portfolio currently contains three QA projects, each demonstrating a different area of software testing.
+This portfolio currently contains four QA projects, each demonstrating a different area of software testing.
 
 1. ClaimPay – Manual Functional & Business Workflow Testing
 
@@ -222,9 +222,33 @@ Integration Architecture | Business Requirements | API Integration Test Plan | A
 
 ./api-integration-testing/referralconnect/
 
+4. Web Service Testing
+webservice-testing/
+
+This project demonstrates hands-on web service testing and validation across service requests, responses, business rules, data, and system integrations.
+
+Testing demonstrated
+Web service testing | Request and response validation | Positive testing | Negative testing | HTTP status code validation | Header validation | Authentication validation | Payload validation | JSON / XML validation | Business-rule validation | Error-response validation | Data validation | Integration testing | End-to-end service validation
+
+Web service testing approach
+Web Service / Endpoint ↓ Prepare Request ↓ Configure Headers / Authentication ↓ Submit Request ↓ Validate HTTP Status Code ↓ Validate Response Body ↓ Validate Business Rules ↓ Validate Data / Integration Results ↓ Negative & Error Testing
+
+Project artifacts
+Web Service Test Plan | Test Scenarios | Detailed Test Cases | Request / Response Examples | Positive and Negative Tests | Error Validation | Test Results
+
 Tools & Technologies: 
 
-Test Management & Collaboration | ALM / Quality Center | Azure DevOps | API & Integration Testing | Postman | Bruno | API / Integration Validation | Request / Response Validation | XML Validation | JSON Validation | Single Sign-On Testing | Database & Data Validation | SQL | Oracle Database | Toad for Oracle | Database Validation | Source-to-Target Validation | Data Reconciliation | ETL & Data Integration | Informatica PowerCenter | ETL Testing | Data Transformation Validation | File-Based Integration Testing | Error / Reject Validation | Supporting Tools | PuTTY | FileZilla
+Test Management & Collaboration: ALM / Quality Center | Azure DevOps
+
+API & Web Service Testing: Postman | Bruno | API Testing | Web Service Testing | Request / Response Validation | JSON Validation | XML Validation | HTTP Status Code Validation | Authentication & Authorization Testing
+
+Database & Data Validation : SQL | Oracle Database | Toad for Oracle | Database Validation | Source-to-Target Validation | Data Reconciliation
+
+ETL & Data Integration : Informatica PowerCenter | ETL Testing | Data Transformation Validation | File-Based Integration Testing | Error / Reject Validation
+
+Integration & Security Testing : System Integration Testing | End-to-End Testing | Single Sign-On Testing | Cross-Application Validation
+
+Supporting Tools: PuTTY | FileZilla
 
 My Testing Approach:
 
@@ -307,51 +331,39 @@ User Interface
 The objective is not only to verify that an integration transaction was technically successful, but also to verify that the correct business information reached the correct target and is accurately represented to the user.
 
 
-📊 QA Skills Demonstrated Across This Portfolio
-Testing Area	ClaimPay	PolicyHub	ReferralConnectRequirements Analysis	
-                ✅	✅	✅
-Test Planning	✅	✅	✅
-Manual Functional Testing	✅	✅	✅
-Negative Testing	✅	✅	✅
-Integration Testing	✅	✅	✅
-API Testing		✅	✅
-ETL Testing		✅	
-Informatica PowerCenter		✅	
-Oracle / SQL Validation		✅	
-Source-to-Target Testing		✅	
-SSO Testing			✅
-Bidirectional Integration			✅
-UI / API Reconciliation		✅	✅
-End-to-End Testing	✅	✅	✅
-Regression Testing	✅	✅	✅
-Requirements Traceability	✅	✅	✅
+QA Skills Demonstrated Across This Portfolio
+
+<img width="975" height="879" alt="image" src="https://github.com/user-attachments/assets/5516c1c7-6eff-431d-9706-0deb836a79de" />
+
 
 Repository Structure
 
-Plain Text
 
 qa-testing-portfolio/
-        │
+│
+
+├── README.md
+
+│
+├── manual-testing/
+
+│   └── claimpay-payment-processing/
+
+│
+├── data-integration-testing/
+
+│   └── policyhub/
+
+│
+├── api-integration-testing/
+
+│   └── referralconnect/
+
+│
+└── webservice-testing/
+
+    └── servicebridge/
         
-        ├── README.md
-        
-        │
-        
-        ├── manual-testing/
-        
-        │ └── claimpay-payment-processing/
-        
-        │
-        
-        ├── data-integration-testing/
-        
-        │ └── policyhub/
-        
-        │
-        
-        └── api-integration-testing/
-        
-        └── referralconnect/
  
 Each project contains its own requirements, test strategy, test scenarios, detailed cases, execution evidence or synthetic results, and requirements traceability.
 
