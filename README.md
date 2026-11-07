@@ -24,45 +24,11 @@ Security and role-based testing | Payment workflow testing | Integration testing
 
 QA lifecycle demonstrated:
 
-Business Requirements
-        
-        ↓
-
-Test Plan
-
-        ↓
-        
-Test Scenarios
-        
-        ↓
-        
-Detailed Test Cases
-        
-        ↓
-        
-Test Execution
-        
-        ↓
-        
-Defects
-        
-        ↓
-        
-Requirements Traceability
+Business Requirements > Test Plan > Test Scenarios > Detailed Test Cases > Test Execution > Defects > Requirements Traceability
 
 Project artifacts:
 
-1. Business Requirements
-
-2. QA Test Plan
-
-3. Test Scenarios
-
-4. Detailed Test Cases
-
-5. Detailed Test Results
-
-6. Requirements Traceability Matrix
+Business Requirements | QA Test Plan | Test Scenarios | Detailed Test Cases | Detailed Test Results | Requirements Traceability Matrix
 
 ./manual-testing/claimpay-payment-processing/
 
@@ -78,51 +44,7 @@ Informatica PowerCenter testing | ETL testing | Source-to-target validation | Or
 
 Technical workflow demonstrated:
 
-Policy Feed
-
-        ↓
-
-Informatica PowerCenter
-        
-        ↓
-        
-Oracle Database
-        
-        ↓
-        
-Transformation / Validation
-        
-        ↓
-        
-Policy Repository
-        
-        ↓
-        
-Policy Search Service
-        
-        ↓
-        
-Incident Application
-
-        ↓
-        
-Claims Application
-        
-        ↓
-        
-Claim
-        
-        ↓
-        
-Reserve
-        
-        ↓
-        
-Payment
-        
-        ↓
-        
-Claim Closure
+Policy Feed > File Zille > Informatica PowerCenter > Oracle Database > Transformation / Validation > Policy Repository > Policy Search Service > Incident Application > Claims Application > Claim > Reserve > Payment > Claim Closure
 
 Project artifacts:
 
@@ -138,83 +60,23 @@ ReferralConnect is a fictional multi-system referral integration project demonst
 
 Testing demonstrated:
 
-API testing | Integration testing | Request and response validation | Field-mapping validation | Single Sign-On testing | Authorization testing | API-to-UI reconciliation | Bidirectional synchronization | Examiner synchronization | Referral-status synchronization | Existing-record update validation | Duplicate prevention | Negative API testing | Error handling | End-to-end integration testing | Integration flows demonstrated | Existing referral during intake
+API testing | Integration testing | Request and response validation | Field-mapping validation | Single Sign-On testing | Authorization testing | API-to-UI reconciliation | Bidirectional synchronization | Examiner synchronization | Referral-status synchronization | Existing-record update validation | Duplicate prevention | Negative API testing | Error handling | End-to-end integration testing | Integration flows demonstrated
 
-ReferralHub
-        
-        ↓
-        
-IntakeConnect
-        
-        ↓
-        
-ClaimCore
-        
-        ↓
-        
-Incident Converted to Claim
-        
-        ↓
-        
-Referral Available on Claim
+Existing referral during intake:
+
+ReferralHub > IntakeConnect > ClaimCore > Incident Converted to Claim > Referral Available on Claim
 
 New referral integration:
 
-
-ReferralHub
-        
-        ↓
-        
-Referral Integration
-        
-        ↓
-        
-ClaimCore
-        
-        ↓
-        
-Referral Displayed in UI
+ReferralHub > Referral Integration > ClaimCore > Referral Displayed in UI
 
 Examiner synchronization:
 
-
-ClaimCore
-        
-        ↓
-        
-Examiner Changed
-        
-        ↓
-        
-Outbound Integration
-        
-        ↓
-        
-ReferralHub
-        
-        ↓
-        
-Existing Referral Updated
+ClaimCore > Examiner Changed > Outbound Integration > ReferralHub > Existing Referral Updated
  
 Referral-status synchronization:
 
-ReferralHub
-        
-        ↓
-        
-Status Changed
-        
-        ↓
-        
-Inbound Integration
-        
-        ↓
-        
-ClaimCore
-        
-        ↓
-        
-Status Updated in UI
+ReferralHub > Status Changed > Inbound Integration > ClaimCore > Status Updated in UI
 
 Project artifacts: 
 
@@ -222,8 +84,7 @@ Integration Architecture | Business Requirements | API Integration Test Plan | A
 
 ./api-integration-testing/referralconnect/
 
-4. Web Service Testing
-webservice-testing/
+4. Web Service Testing/webservice-testing/
 
 This project demonstrates hands-on web service testing and validation across service requests, responses, business rules, data, and system integrations.
 
