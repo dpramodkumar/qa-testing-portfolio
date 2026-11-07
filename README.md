@@ -117,80 +117,16 @@ My testing approach emphasizes understanding the complete business process rathe
 
 I typically approach testing as:
 
-Requirement
-        
-        ↓
-        
-Understand Business Flow
-        
-        ↓
-        
-Identify Integration Points
-        
-        ↓
-        
-Design Test Scenarios
-        
-        ↓
-        
-Create Detailed Test Cases
-        
-        ↓
-        
-Prepare Test Data
-        
-        ↓
-        
-Execute Tests
-        
-        ↓
-        
-Validate UI / API / Database
-        
-        ↓
-        
-Document Defects
-        
-        ↓
-        
-Regression Testing
-        
-        ↓
-        
-End-to-End Validation
-        
-        ↓
-        
-Requirements Traceability
-        
-        ↓
-        
-Test Completion
+Requirement > Understand Business Flow > Identify Integration Points > Design Test Scenarios > Create Detailed Test Cases > Prepare Test Data > Execute Tests >   
+Validate UI / API / Database > Document Defects > Regression Testing > End-to-End Validation > Requirements Traceability > Test Completion
  
 For integrated applications, I focus on validating data at each applicable checkpoint.
 
 Example:
 
-Source System
-        
-        ↓
-        
-Integration / API
-        
-        ↓
-        
-Target Application
-        
-        ↓
-        
-Database
-        
-        ↓
-        
-User Interface
+Source System > Integration / API > Target Application > Database > User Interface
 
 The objective is not only to verify that an integration transaction was technically successful, but also to verify that the correct business information reached the correct target and is accurately represented to the user.
-
 
 QA Skills Demonstrated Across This Portfolio
 
@@ -198,7 +134,6 @@ QA Skills Demonstrated Across This Portfolio
 
 
 Repository Structure
-
 
 qa-testing-portfolio/
 │
@@ -225,7 +160,6 @@ qa-testing-portfolio/
 
     └── servicebridge/
         
- 
 Each project contains its own requirements, test strategy, test scenarios, detailed cases, execution evidence or synthetic results, and requirements traceability.
 
 Confidentiality & Portfolio Disclaimer
